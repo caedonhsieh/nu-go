@@ -55,9 +55,12 @@ let map = new InteractiveMap({
 	},
 
 	update() {
-		const currTime = new Date()
-		gameState.timeElapsed = (currTime - startTime) / 1000
-		// Do something each frame
+		if (!gameState.alreadyWon) {
+			const currTime = new Date()
+			gameState.timeElapsed = (currTime - startTime) / 1000
+			// Do something each frame
+		}
+		
 	},
 
 	initializeLandmark: (landmark, isPlayer) => {
