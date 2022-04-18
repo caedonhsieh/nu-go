@@ -24,6 +24,7 @@ let gameState = {
 	timeElapsed: 0,
 	captures: 0,
 	captured: [],
+	alreadyWon: false,
 	messages: [`Win the game by capturing ${capturesToWin} landmarks as fast as possible!`]
 }
 
@@ -90,9 +91,10 @@ let map = new InteractiveMap({
 				// Add points to my gamestate
 				gameState.captures += 1
 				gameState.captured.push(landmark.name)
-				if (gameState.captures >= capturesToWin) {
+				if ((gameState.captures >= capturesToWin) && !gameState.alreadyWon) {
 					console.log('won');
 					gameState.messages.push(`You won the game by getting ${capturesToWin} captures in ${gameState.timeElapsed} seconds!`);
+					gameState.alreadyWon = true;
 				}
 			}
 
